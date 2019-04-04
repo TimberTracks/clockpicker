@@ -378,6 +378,7 @@
     autoclose: false,    // auto close when minute is selected
     twelvehour: false, // change to 12 hour AM/PM clock from 24 hour
     am_pm_delimiter: '',  // delimiter betwee hours and AM/PM. Default: no delimiter. Example: 12:00AM
+    hours_leading_zero: true,  // leading zero for hours
     vibrate: true        // vibrate the device when dragging clock hand
   };
 
@@ -472,7 +473,11 @@
     }
     this.hours = + value[0] || 0;
     this.minutes = + value[1] || 0;
-    this.spanHours.html(leadingZero(this.hours));
+    if (this.options.hours_leading_zero) {
+      this.spanHours.html(leadingZero(this.hours));
+    } else {
+      this.spanHours.html(this.hours);
+    }
     this.spanMinutes.html(leadingZero(this.minutes));
 
     // Toggle to hours view
@@ -654,7 +659,15 @@
     }
 
     this[this.currentView] = value;
-    this[isHours ? 'spanHours' : 'spanMinutes'].html(leadingZero(value));
+    if (isHours) {
+      if (this.options.hours_leading_zero) {
+        this.spanHours.html(leadingZero(value));
+      } else {
+        this.spanHours.html(value);
+      }
+    } else {
+      this.spanMinutes.html(leadingZero(value));
+    }
 
     // If svg is not supported, just add an active class to the tick
     if (! svgSupported) {
@@ -692,8 +705,12 @@
   ClockPicker.prototype.done = function() {
     raiseCallback(this.options.beforeDone);
     this.hide();
-    var last = this.input.prop('value'),
+    var last = this.input.prop('value'), value;
+    if (this.options.hours_leading_zero) {
       value = leadingZero(this.hours) + ':' + leadingZero(this.minutes);
+    } else {
+      value = this.hours + ':' + leadingZero(this.minutes);
+    }
     if  (this.options.twelvehour) {
       value = value + this.options.am_pm_delimiter + this.amOrPm;
     }
