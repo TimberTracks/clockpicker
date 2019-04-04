@@ -117,6 +117,7 @@
     this.spanMinutes = popover.find('.clockpicker-span-minutes');
     this.spanAmPm = popover.find('.clockpicker-span-am-pm');
     this.amOrPm = "PM";
+    this.minuteStep = options.minute_step;
 
     // set AM or PM depending on current value
     if (this.input.val() && options.twelvehour) {
@@ -226,7 +227,7 @@
     }
 
     // Minutes view
-    for (i = 0; i < 60; i += 5) {
+    for (i = 0; i < 60; i += this.minuteStep) {
       tick = tickTpl.clone();
       radian = i / 30 * Math.PI;
       tick.css({
@@ -379,6 +380,7 @@
     twelvehour: false, // change to 12 hour AM/PM clock from 24 hour
     am_pm_delimiter: '',  // delimiter betwee hours and AM/PM. Default: no delimiter. Example: 12:00AM
     hours_leading_zero: true,  // leading zero for hours
+    minute_step: 5,  // step for minutes clock. Default: 5
     vibrate: true        // vibrate the device when dragging clock hand
   };
 
