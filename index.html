@@ -160,7 +160,7 @@ $('.clockpicker').clockpicker({
 		<div class="clearfix">
 			<div class="pull-center clearfix" style="margin-bottom:10px;">
 				<button type="button" class="btn btn-default pull-right" id="check-minutes">Check the minutes</button>
-				<input class="form-control pull-right" id="single-input" value="" placeholder="Now" style="width:80px;margin-right:20px;">
+				<input class="form-control pull-right" id="single-input" value="" placeholder="Now" style="width:100px;margin-right:20px;">
 			</div>
 		</div>
 		<pre class="hljs-pre"><code class="html">&lt;input class="form-control" id="single-input" value="" placeholder="Now"&gt;
@@ -170,6 +170,8 @@ $('.clockpicker').clockpicker({
 var input = $('#single-input').clockpicker({
 	placement: 'bottom',
 	align: 'left',
+	twelvehour: true,
+	am_pm_delimiter: ' ',
 	autoclose: true,
 	'default': 'now'
 });
@@ -406,6 +408,8 @@ $('.clockpicker').clockpicker()
 var input = $('#single-input').clockpicker({
 	placement: 'bottom',
 	align: 'left',
+  twelvehour: true,
+  am_pm_delimiter: ' ',
 	autoclose: true,
 	'default': 'now'
 });
