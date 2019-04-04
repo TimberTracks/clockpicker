@@ -154,14 +154,14 @@
       $('<button type="button" class="btn btn-sm btn-default clockpicker-button am-button">' + "AM" + '</button>')
         .on("click", function() {
           self.amOrPm = "AM";
-          $('.clockpicker-span-am-pm').empty().append('AM');
+          $('.clockpicker-span-am-pm').empty().append(options.am_pm_delimiter).append('AM');
         }).appendTo(this.amPmBlock);
 
 
       $('<button type="button" class="btn btn-sm btn-default clockpicker-button pm-button">' + "PM" + '</button>')
         .on("click", function() {
           self.amOrPm = 'PM';
-          $('.clockpicker-span-am-pm').empty().append('PM');
+          $('.clockpicker-span-am-pm').empty().append(options.am_pm_delimiter).append('PM');
         }).appendTo(this.amPmBlock);
 
     }
