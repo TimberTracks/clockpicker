@@ -156,6 +156,7 @@
         .on("click", function() {
           self.amOrPm = "AM";
           $('.clockpicker-span-am-pm').empty().append(options.am_pm_delimiter).append('AM');
+          self.updateAmPmHighlight()
         }).appendTo(this.amPmBlock);
 
 
@@ -163,6 +164,7 @@
         .on("click", function() {
           self.amOrPm = 'PM';
           $('.clockpicker-span-am-pm').empty().append(options.am_pm_delimiter).append('PM');
+          self.updateAmPmHighlight()
         }).appendTo(this.amPmBlock);
 
     }
@@ -383,6 +385,15 @@
     minute_step: 5,  // step for minutes clock. Default: 5
     vibrate: true        // vibrate the device when dragging clock hand
   };
+  ClockPicker.prototype.updateAmPmHighlight = function(){
+    if (this.amOrPm == 'AM') {
+      this.amPmBlock.find('.am-button').addClass('active');
+      this.amPmBlock.find('.pm-button').removeClass('active');
+    } else {
+      this.amPmBlock.find('.pm-button').addClass('active');
+      this.amPmBlock.find('.am-button').removeClass('active');
+    }
+  };
 
   // Show or hide popover
   ClockPicker.prototype.toggle = function(){
@@ -559,13 +570,7 @@
     }
 
     if (this.options.twelvehour) {
-      if (this.amOrPm == 'AM') {
-        this.amPmBlock.find('.am-button').addClass('active');
-        this.amPmBlock.find('.pm-button').removeClass('active');
-      } else {
-        this.amPmBlock.find('.pm-button').addClass('active');
-        this.amPmBlock.find('.am-button').removeClass('active');
-      }
+      this.updateAmPmHighlight()
     }
   };
 
