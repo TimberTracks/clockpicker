@@ -550,6 +550,16 @@
     if (raiseAfterHourSelect) {
       raiseCallback(this.options.afterHourSelect);
     }
+
+    if (this.options.twelvehour) {
+      if (this.amOrPm == 'AM') {
+        this.amPmBlock.find('.am-button').addClass('active');
+        this.amPmBlock.find('.pm-button').removeClass('active');
+      } else {
+        this.amPmBlock.find('.pm-button').addClass('active');
+        this.amPmBlock.find('.am-button').removeClass('active');
+      }
+    }
   };
 
   // Reset clock hand
