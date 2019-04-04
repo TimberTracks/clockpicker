@@ -118,6 +118,13 @@
     this.spanAmPm = popover.find('.clockpicker-span-am-pm');
     this.amOrPm = "PM";
 
+    // set AM or PM depending on current value
+    if (this.input.val() && options.twelvehour) {
+      if (['AM', 'PM'].indexOf(this.input.val().slice(-2)) !== -1) {
+        this.amOrPm = this.input.val().slice(-2);
+      }
+    }
+
     // Setup for for 12 hour clock if option is selected
     if (options.twelvehour) {
 
